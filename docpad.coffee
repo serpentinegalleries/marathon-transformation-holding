@@ -12,32 +12,30 @@ docpadConfig = {
 		# Specify some site properties
 		site:
 			# The production url of our website
-			url: "http://website.com"
+			url: "http://radio.serpentinegalleries.org"
 
 			# Here are some old site urls that you would like to redirect from
 			oldUrls: [
-				'www.website.com',
-				'website.herokuapp.com'
 			]
 
 			# The default title of our website
-			title: "Your Website"
+			title: "Transformation Marathon"
 
 			# The website description (for SEO)
 			description: """
-				When your website appears in search results in say Google, the text here will be shown underneath your website's title.
+				 Celebrating its tenth anniversary since the inaugural 2006 Interview Marathon, this year’s Transformation Marathon invites artists, sociologists, anthropologists, writers, musicians, architects, scientists and philosophers to address physical, cultural and political shifts, mutation and evolution.
 				"""
 
 			# The website keywords (for SEO) separated by commas
 			keywords: """
-				place, your, website, keywoards, here, keep, them, related, to, the, content, of, your, website
+				serpentine, marathon, hansulrichobrist, transformation, radio
 				"""
 
 			# The website author's name
-			author: "Your Name"
+			author: "Folder"
 
 			# The website author's email
-			email: "your@email.com"
+			email: "prox@imity.io"
 
 			# Styles
 			styles: [
@@ -62,11 +60,6 @@ docpadConfig = {
 		# Often we would like to specify particular formatting to our page's title
 		# we can apply that formatting here
 		getPreparedTitle: ->
-			# if we have a document title, then we should use that and suffix the site's title onto it
-			if @document.title
-				"#{@document.title} | #{@site.title}"
-			# if our document does not have it's own title, then we should just use the site's title
-			else
 				@site.title
 
 		# Get the prepared site/document description
