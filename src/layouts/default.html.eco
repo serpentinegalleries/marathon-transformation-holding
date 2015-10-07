@@ -41,6 +41,26 @@
 </head>
 <body>
 
+ <div class="container">
+	<div class="row heading">
+		<!-- Logo -->
+		<div class="col-sm-12 col-md-6 col-lg-6">
+			  <img src="/images/logo.png">
+		   </hgroup>
+		</div>
+		<!--- Weather Stream -->
+		<div class="col-sm-12 col-md-6 col-lg-6 weather-icons">
+		  <div>
+			 <img id="icon-weather" src="/images/clear_icon.png">
+		  </div>
+		  <div>
+			 <img id="icon-wind" src="/images/wind_icon.png">                                    
+		  </div>
+		  <div class="row" id="text-weather">
+		  </div>
+		</div>
+	</div>
+</div>
 
 	<!-- Content -->
 	<div class="container">
@@ -48,6 +68,33 @@
 			<%- @content %>
 
 	</div><!-- /container -->
+
+    <footer>
+        <div class="container">
+                <div class="row">
+                	<div class="col-lg-12">
+	                    <img class="footer-logo" src="/images/logo.png">
+					</div>  
+                </div>
+                <div class="row">
+                	<div class="col-lg-12">
+	                    <img class="pull-right" src="/images/serpentine_marathon.png">
+					</div>  
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                    	<div class="social-icons pull-right">
+                    		<h5><a href="//twitter.com/SerpentineUK"><i class="fa fa-twitter"></i></a>
+                    		<a href="//instagram.com/serpentineuk"><i class="fa fa-instagram"></i></a>
+                    		<a href="//vimeo.com/serpentinegalleries"><i class="fa fa-vimeo"></i></a>
+                    		<a href="//facebook.com/SerpentineGalleries"><i class="fa fa-facebook"></i></a></h5>          
+                    	</div>
+                	</div>
+            	</div>
+        	</div>
+        </div>
+    </footer>
+
 
 	<!-- Scripts -->
 	<%- @getBlock('scripts').add(@site.scripts).toHTML() %>

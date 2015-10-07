@@ -41,6 +41,7 @@ docpadConfig = {
 			styles: [
 				"/styles/twitter-bootstrap.css"
 				"/styles/style.css"
+				"//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
 			]
 
 			# Scripts
@@ -48,6 +49,9 @@ docpadConfig = {
 				"//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"
 				"//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
 				"/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"
+				"http://d3js.org/d3.v2.js"
+				"/scripts/weather.js"
+				"/scripts/player.js"
 				"/scripts/script.js"
 			]
 
