@@ -11,15 +11,13 @@ jQuery(document).ready(function( $ ) {
 	var wind;
 	var showWeather = false;
 	var showWind = false;
-	var weatherIcon;
+	var windDirection;
 
 	$.getJSON( "http://api.openweathermap.org/data/2.5/weather?q=London,uk&units=metric&APPID=21d88c5657030fc12d5d4a62dbf0f053", function( data ) {
 		 weather = "London, " + month + " " + day + "<br>" + data.weather[0].main + ", " + data.main.temp + "°C" ;
-		 wind = "London, " + month + " " + day + "<br>" + data.wind.speed + ", " + data.wind.deg ;
-		 weatherIcon = data.weather[0].icon;
-		 setIcon(weatherIcon);
-		 setWindIcon(data.wind.deg)
-		 console.log(data);
+		 setIcon(data.weather[0].icon);
+		 setWindIcon(data.wind.deg);
+		 wind = "London, " + month + " " + day + "<br>" + data.wind.speed + " m/s, " + windDirection ;
 	})
 
 	function setIcon(icon) {
@@ -27,32 +25,39 @@ jQuery(document).ready(function( $ ) {
 	}
 
 	function setWindIcon(wind_direction) {
-		switch(windDeg) {
-		    case (windDeg > 337.5 || windDeg <= 22.5):
-		        $("#icon-wind").attr("src", "/images/wind/white/n.svg")
-		        break;
-		    case (22.5 < windDeg <= 67.5):
-		        $("#icon-wind").attr("src", "/images/wind/white/ne.svg")
-		        break;
-		    case (67.5 < windDeg <= 112.5):
-		        $("#icon-wind").attr("src", "/images/wind/white/e.svg")
-		        break;
-		    case (112.5 < windDeg <= 157.5):
-		        $("#icon-wind").attr("src", "/images/wind/white/se.svg")
-		        break;
-		    case (157.5 < windDeg <= 202.5):
-		        $("#icon-wind").attr("src", "/images/wind/white/s.svg")
-		        break;
-		    case (202.5 < windDeg <= 247.5):
-		        $("#icon-wind").attr("src", "/images/wind/white/sw.svg")
-		        break;
-		    case (247.5 < windDeg <= 292.5):
-		        $("#icon-wind").attr("src", "/images/wind/white/w.svg")
-		        break;
-		    case (292.5 < windDeg <= 337.5):
-		        $("#icon-wind").attr("src", "/images/wind/white/nw.svg")
-		        break;
-		}		
+	    if (wind_direction > 337.5 || wind_direction <= 22.5) {
+	        $("#icon-wind").attr("src", "/images/wind/white/n.svg");
+	        windDirection = 'North';
+	    }
+	    else if (22.5 < wind_direction && wind_direction <= 67.5) {
+	        $("#icon-wind").attr("src", "/images/wind/white/ne.svg");
+	        windDirection = 'Northeast';
+		}
+	    else if (67.5 < wind_direction && wind_direction <= 112.5) {
+	        $("#icon-wind").attr("src", "/images/wind/white/e.svg");
+	        windDirection = 'East';
+		}
+	    else if (112.5 < wind_direction && wind_direction <= 157.5) {
+	        $("#icon-wind").attr("src", "/images/wind/white/se.svg");
+			        windDirection = 'Southeast';
+		}
+	    else if (157.5 < wind_direction && wind_direction <= 202.5) {
+	        $("#icon-wind").attr("src", "/images/wind/white/s.svg");
+	        windDirection = 'South';
+		}
+	    else if (202.5 < wind_direction && wind_direction <= 247.5) {
+	        $("#icon-wind").attr("src", "/images/wind/white/sw.svg");
+	        windDirection = 'Southwest';
+		}
+	    else if (247.5 < wind_direction && wind_direction <= 292.5) {
+	        $("#icon-wind").attr("src", "/images/wind/white/w.svg");
+	        windDirection = 'West';
+		}
+	    else if (292.5 < wind_direction && wind_direction <= 337.5) {
+	        $("#icon-wind").attr("src", "/images/wind/white/nw.svg");
+	        windDirection = 'Northwest';
+		}
+
 	}
 
 	$('#icon-weather').mouseenter(function() {

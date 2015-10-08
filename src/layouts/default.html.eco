@@ -54,7 +54,7 @@
 			 <img id="icon-weather">
 		  </div>
 		  <div>
-			 <img id="icon-wind" src="/images/wind_icon.png">                                    
+			 <img id="icon-wind">                                    
 		  </div>
 		  <div class="row" id="text-weather">
 		  </div>

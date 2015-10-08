@@ -215,9 +215,13 @@ WEATHER ICONS
 .weather-icons img {
     cursor: pointer;
     display: inline;
-    height: 20px;
+    max-height: 30px;
     width: 30px;
     margin: 5px;
+    opacity: .5;
+}
+.weather-icons img:hover {
+    opacity: 1;
 }
 .weather-icons div {
     display: inline !important;

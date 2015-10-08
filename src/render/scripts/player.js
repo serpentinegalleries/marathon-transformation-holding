@@ -1,3 +1,5 @@
+jQuery(document).ready(function( $ ) {
+
 	/* Countdown */
 
 	var saturday = 'October 17 2015 09:59:59 GMT+01:00';
@@ -202,4 +204,6 @@ $(window).on("resize", function() {
     videoViz.attr("height", targetWidth / aspect);
     radioViz.attr("width", targetWidth);
     radioViz.attr("height", targetWidth / aspect);
+});
+
 });
