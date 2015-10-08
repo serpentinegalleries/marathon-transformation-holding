@@ -51,7 +51,7 @@
 		<!--- Weather Stream -->
 		<div class="col-sm-12 col-md-3 col-lg-2 col-lg-offset-4 weather-icons">
 		  <div>
-			 <img id="icon-weather" src="/images/clear_icon.png">
+			 <img id="icon-weather">
 		  </div>
 		  <div>
 			 <img id="icon-wind" src="/images/wind_icon.png">                                    
