@@ -74,10 +74,14 @@ var hourScale = d3.scale.linear()
 	  .outerRadius(185)
 	  .startAngle(0);
 
-	// Video player
+	/* Video player
 	var video = d3.select("#videoPlayer").append("svg")
 	  .attr("width", width)
 	  .attr("height", height)
+	.append("g")
+	  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")*/
+
+	var video = d3.select("#video-viz")
 	.append("g")
 	  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
 
@@ -104,7 +108,6 @@ var hourScale = d3.scale.linear()
 
 	initializeDaysClock('saturdayDays', saturday);
 
-
 	video.append("svg:text")
 		 .attr("x", 0)
 		 .attr("y", 29)
@@ -127,9 +130,7 @@ var hourScale = d3.scale.linear()
 	}, 1500);
 
 	// Radio Player
-	var radio = d3.select("#radioPlayer").append("svg")
-	  .attr("width", width)
-	  .attr("height", height)
+	var radio = d3.select("#radio-viz")
 	.append("g")
 	  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
 
@@ -188,3 +189,17 @@ var hourScale = d3.scale.linear()
 	});
 	}
 
+/*************
+Resize player
+*************/
+
+var aspect = 500 / 425,
+    videoViz = $("#video-viz"),
+    radioViz = $("#radio-viz");
+$(window).on("resize", function() {
+    var targetWidth = videoViz.parent().width();
+    videoViz.attr("width", targetWidth);
+    videoViz.attr("height", targetWidth / aspect);
+    radioViz.attr("width", targetWidth);
+    radioViz.attr("height", targetWidth / aspect);
+});

@@ -49,7 +49,7 @@
 		   </hgroup>
 		</div>
 		<!--- Weather Stream -->
-		<div class="col-sm-12 col-md-6 col-lg-6 weather-icons">
+		<div class="col-sm-12 col-md-3 col-lg-2 col-lg-offset-4 weather-icons">
 		  <div>
 			 <img id="icon-weather" src="/images/clear_icon.png">
 		  </div>
