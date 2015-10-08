@@ -40,8 +40,6 @@ jQuery(document).ready(function( $ ) {
 	}
 
 
-
-
 /**********
 PLAYER
 **********/
@@ -72,9 +70,12 @@ var hourScale = d3.scale.linear()
 	var halfdayVar = (((dateVar.getUTCHours() + 1) * 60) + minVar - 720) / 1440;
 
 	var arc = d3.svg.arc()
-	  .innerRadius(190)
-	  .outerRadius(185)
+	  .innerRadius(180)
+	  .outerRadius(175)
 	  .startAngle(0);
+
+    var hourTickStart = 193;
+    var hourTickLength = -5;
 
 	/* Video player
 	var video = d3.select("#videoPlayer").append("svg")
@@ -90,12 +91,6 @@ var hourScale = d3.scale.linear()
 	// Add the background arc, from 0 to 100% (τ).
 	var background = video.append("path")
 	  .datum({endAngle: τ})
-	  .style("fill", "#FFF")
-	  .attr("d", arc);
-
-	// Add the foreground arc
-	var videoForeground = video.append("path")
-	  .datum({endAngle: hourVar * τ})
 	  .style("fill", "#FFF")
 	  .attr("d", arc);
 
@@ -121,29 +116,28 @@ var hourScale = d3.scale.linear()
 
 	initializeHoursClock('saturdayHours', saturday);
 
-
-	// Use transition.call
-	// (identical to selection.call) so that we can encapsulate the logic for
-	// tweening the arc in a separate function below.
-	setInterval(function() {
-	videoForeground.transition()
-	    .duration(100)
-	    .call(arcTween, hourVar * τ);
-	}, 1500);
+	video.selectAll('.hour-tick')
+		.data(d3.range(0,12)).enter()
+			.append('line')
+			.attr('class', 'hour-tick')
+			.attr('x1',0)
+			.attr('x2',0)
+			.attr('y1',hourTickStart)
+			.attr('y2',hourTickStart + hourTickLength)
+			.style("stroke-width", "2px")
+			.style("stroke", "#FFF")
+			.attr('transform',function(d){
+				return 'rotate(' + hourScale(d) + ')';
+			});
 
 	// Radio Player
 	var radio = d3.select("#radio-viz")
 	.append("g")
 	  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
 
-	var background = radio.append("path")
+	var radioBackground = radio.append("path")
 	  .datum({endAngle: τ})
 	  .style("fill", "#FFF")
-	  .attr("d", arc);
-
-	var radioForeground = radio.append("path")
-	  .datum({endAngle: .127 * τ})
-	  .style("fill", "#FFF") 
 	  .attr("d", arc);
 
 	radio.append("svg:text")
@@ -168,26 +162,20 @@ var hourScale = d3.scale.linear()
 
 	initializeHoursClock('sundayHours', sunday);
 
-var ticks = background.append("g").selectAll("g")
-    .data(groupTicks)
-  .enter().append("g")
-    .attr("transform", function(d) {
-      return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")"
-          + "translate(" + outerRadius + ",0)";
-    });
-
-ticks.append("line")
-    .attr("x1", 1)
-    .attr("y1", 0)
-    .attr("x2", 5)
-    .attr("y2", 0)
-    .style("stroke", "#000");
-
-	setInterval(function() {
-	radioForeground.transition()
-	    .duration(d3.time.minute)
-	    .call(arcTween, halfdayVar * τ);
-	}, 1500);
+//... and hours
+	radio.selectAll('.hour-tick')
+		.data(d3.range(0,12)).enter()
+			.append('line')
+			.attr('class', 'hour-tick')
+			.attr('x1',0)
+			.attr('x2',0)
+			.attr('y1',hourTickStart)
+			.attr('y2',hourTickStart + hourTickLength)
+			.style("stroke-width", "2px")
+			.style("stroke", "#FFF")
+			.attr('transform',function(d){
+				return 'rotate(' + hourScale(d) + ')';
+			});
 
 
 	function arcTween(transition, newAngle) {
@@ -205,16 +193,6 @@ ticks.append("line")
 	});
 	}
 
-// Returns an array of tick angles and labels, given a group.
-function groupTicks(d) {
-  var k = (d.endAngle - d.startAngle) / d.value;
-  return d3.range(0, d.value, 1000).map(function(v, i) {
-    return {
-      angle: v * k + d.startAngle,
-      label: i % 5 ? null : v / 1000 + "k"
-    };
-  });
-}
 
 /*************
 Resize player
