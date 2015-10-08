@@ -15,7 +15,6 @@ jQuery(document).ready(function( $ ) {
 	$.getJSON( "http://api.openweathermap.org/data/2.5/weather?q=London,uk&units=metric&APPID=21d88c5657030fc12d5d4a62dbf0f053", function( data ) {
 		 weather = "London, " + month + " " + day + "<br>" + data.weather[0].main + ", " + data.main.temp + "°C" ;
 		 wind = "London, " + month + " " + day + "<br>" + data.wind.speed + ", " + data.wind.deg ;
-		console.log(data);
 	})
 
 	$('#icon-weather').mouseenter(function() {

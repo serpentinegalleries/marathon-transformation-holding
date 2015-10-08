@@ -1,21 +1,48 @@
 	/* Countdown */
 
-	var deadline = 'October 18 2015 11:59:59 GMT+01:00';
+	var saturday = 'October 17 2015 09:59:59 GMT+01:00';
+	var sunday = 'October 18 2015 11:59:59 GMT+01:00';
+
+	var timeLeft;
 
 	function getTimeRemaining(endtime){
-  var t = Date.parse(endtime) - Date.parse(new Date());
-  var seconds = Math.floor( (t/1000) % 60 );
-  var minutes = Math.floor( (t/1000/60) % 60 );
-  var hours = Math.floor( (t/(1000*60*60)) % 24 );
-  var days = Math.floor( t/(1000*60*60*24) );
-  return {
-    'total': t,
-    'days': days,
-    'hours': hours,
-    'minutes': minutes,
-    'seconds': seconds
-  };
-}
+		var t = Date.parse(endtime) - Date.parse(new Date());
+		var seconds = Math.floor( (t/1000) % 60 );
+		var minutes = Math.floor( (t/1000/60) % 60 );
+		var hours = Math.floor( (t/(1000*60*60)) % 24 );
+		var days = Math.floor( t/(1000*60*60*24) );
+		return {
+			'total': t,
+			'days': days,
+			'hours': hours,
+			'minutes': minutes,
+			'seconds': seconds
+		};
+	}
+
+	function initializeHoursClock(id, endtime){
+	  var clock = document.getElementById(id);
+	  var timeinterval = setInterval(function(){
+	    var t = getTimeRemaining(endtime);
+	    clock.innerHTML = t.hours + ":" + (t.minutes<10?'0':'') + t.minutes + ":" + (t.seconds<10?'0':'') + t.seconds;
+	    if(t.total<=0){
+	      clearInterval(timeinterval);
+	    }
+	  },1000);
+	}
+
+	function initializeDaysClock(id, endtime){
+	  var clock = document.getElementById(id);
+	    var t = getTimeRemaining(endtime);
+	    clock.innerHTML = "-" + t.days+ " DAYS";
+	}
+
+
+
+
+/**********
+PLAYER
+**********/
 
 var hourScale = d3.scale.linear()
 	.range([0,330])
@@ -73,16 +100,10 @@ var hourScale = d3.scale.linear()
 		 .attr("stroke-width", -1)
 		 .attr("text-anchor", "middle")
 		 .attr("class", "status")
-		 .text("ON AIR");
+		 .attr("id", "saturdayDays")
 
-	video.append("svg:text")
-		 .attr("x", 0)
-		 .attr("y", 0)
-		 .style("fill", "#FFF")
-		 .attr("stroke-width", -1)
-		 .attr("text-anchor", "middle")
-		 .attr("class", "name")
-		 .text("Susan Miller");
+	initializeDaysClock('saturdayDays', saturday);
+
 
 	video.append("svg:text")
 		 .attr("x", 0)
@@ -90,8 +111,11 @@ var hourScale = d3.scale.linear()
 		 .style("fill", "#FFF")
 		 .attr("stroke-width", -1)
 		 .attr("text-anchor", "middle")
-		 .attr("class", "title")
-		 .text("The Last Silent Movie");
+		 .attr("class", "countdown")
+		 .attr("id", "saturdayHours")
+
+	initializeHoursClock('saturdayHours', saturday);
+
 
 	// Use transition.call
 	// (identical to selection.call) so that we can encapsulate the logic for
@@ -123,10 +147,12 @@ var hourScale = d3.scale.linear()
 		 .attr("x", 0)
 		 .attr("y", -100)
 		 .style("fill", "#FFF")
-		 .attr("stroke-width", 0)
+		 .attr("stroke-width", -1)
 		 .attr("text-anchor", "middle")
 		 .attr("class", "status")
-		 .text("STARTING IN");
+		 .attr("id", "sundayDays")
+
+	initializeDaysClock('sundayDays', sunday);
 
 	radio.append("svg:text")
 		 .attr("x", 0)
@@ -135,7 +161,10 @@ var hourScale = d3.scale.linear()
 		 .attr("stroke-width", -1)
 		 .attr("text-anchor", "middle")
 		 .attr("class", "countdown")
-		 .text("14:59:00");
+		 .attr("id", "sundayHours")
+
+	initializeHoursClock('sundayHours', sunday);
+
 
 	setInterval(function() {
 	radioForeground.transition()
