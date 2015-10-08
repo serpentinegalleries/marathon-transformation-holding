@@ -106,11 +106,10 @@ var hourScale = d3.scale.linear()
 	initializeDaysClock('saturdayDays', saturday);
 
 	video.append("svg:text")
-		 .attr("x", 0)
+		 .attr("x", -99)
 		 .attr("y", 29)
 		 .style("fill", "#FFF")
 		 .attr("stroke-width", -1)
-		 .attr("text-anchor", "middle")
 		 .attr("class", "countdown")
 		 .attr("id", "saturdayHours")
 
@@ -151,12 +150,17 @@ var hourScale = d3.scale.linear()
 
 	initializeDaysClock('sundayDays', sunday);
 
-	radio.append("svg:text")
+	var textBox = radio.append("div")
+		.attr("class", "hello")
 		 .attr("x", 0)
+		 .attr("y", 0)
+		 .text("hello");
+
+	radio.append("svg:text")
+		 .attr("x", -98)
 		 .attr("y", 29)
 		 .style("fill", "#FFF")
 		 .attr("stroke-width", -1)
-		 .attr("text-anchor", "middle")
 		 .attr("class", "countdown")
 		 .attr("id", "sundayHours")
 
