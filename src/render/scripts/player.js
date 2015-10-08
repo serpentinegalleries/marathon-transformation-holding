@@ -168,6 +168,20 @@ var hourScale = d3.scale.linear()
 
 	initializeHoursClock('sundayHours', sunday);
 
+var ticks = background.append("g").selectAll("g")
+    .data(groupTicks)
+  .enter().append("g")
+    .attr("transform", function(d) {
+      return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")"
+          + "translate(" + outerRadius + ",0)";
+    });
+
+ticks.append("line")
+    .attr("x1", 1)
+    .attr("y1", 0)
+    .attr("x2", 5)
+    .attr("y2", 0)
+    .style("stroke", "#000");
 
 	setInterval(function() {
 	radioForeground.transition()
@@ -190,6 +204,17 @@ var hourScale = d3.scale.linear()
 	  };
 	});
 	}
+
+// Returns an array of tick angles and labels, given a group.
+function groupTicks(d) {
+  var k = (d.endAngle - d.startAngle) / d.value;
+  return d3.range(0, d.value, 1000).map(function(v, i) {
+    return {
+      angle: v * k + d.startAngle,
+      label: i % 5 ? null : v / 1000 + "k"
+    };
+  });
+}
 
 /*************
 Resize player

@@ -11,7 +11,7 @@
 
 	<!-- Our site title and description -->
 	<title><%= @getPreparedTitle() %></title>
-	<meta name="description" content="<%= @getPreparedDescription() %>" />
+	<!--<meta name="description" content="<%= @getPreparedDescription() %>" />
 	<meta name="keywords" content="<%= @getPreparedKeywords() %>" />
 	<meta name="author" content="<%= @site.author or '' %>" />
 
@@ -22,8 +22,8 @@
 	<meta property="og:url" content="http://radio.serpentinegalleries.org" />
 	<meta property="og:image" content="http://radio.serpentinegalleries.org/images/transformation_opengraph.png" />
 
-	<!-- Output DocPad produced meta elements -->
-	<%- @getBlock('meta').toHTML() %>
+	<!-- Output DocPad produced meta elements
+	<%- @getBlock('meta').toHTML() %> -->
 
 	<!-- Mobile viewport optimized: h5bp.com/viewport -->
 	<meta name="viewport" content="width=device-width" />
