@@ -26,7 +26,7 @@ jQuery(document).ready(function( $ ) {
 	  var clock = document.getElementById(id);
 	  var timeinterval = setInterval(function(){
 	    var t = getTimeRemaining(endtime);
-	    clock.innerHTML = t.hours + ":" + (t.minutes<10?'0':'') + t.minutes + ":" + (t.seconds<10?'0':'') + t.seconds;
+	    clock.innerHTML = (t.hours<10?'0':'') + t.hours + ":" + (t.minutes<10?'0':'') + t.minutes + ":" + (t.seconds<10?'0':'') + t.seconds;
 	    if(t.total<=0){
 	      clearInterval(timeinterval);
 	    }
@@ -47,18 +47,6 @@ PLAYER
 var hourScale = d3.scale.linear()
 	.range([0,330])
 	.domain([0,11])
-
-	/*face.selectAll('.hour-tick')
-		.data(d3.range(0,12)).enter()
-			.append('line')
-			.attr('class', 'hour-tick')
-			.attr('x1',0)
-			.attr('x2',0)
-			.attr('y1',hourTickStart)
-			.attr('y2',hourTickStart + hourTickLength)
-			.attr('transform',function(d){
-				return 'rotate(' + hourScale(d) + ')';
-			});*/
 
 	var width = 500,
 	  height = 425,
@@ -105,8 +93,9 @@ var hourScale = d3.scale.linear()
 
 	initializeDaysClock('saturdayDays', saturday);
 
+	// Day 1 Countdown text
 	video.append("svg:text")
-		 .attr("x", -99)
+		 .attr("x", -103)
 		 .attr("y", 29)
 		 .style("fill", "#FFF")
 		 .attr("stroke-width", -1)
@@ -139,6 +128,7 @@ var hourScale = d3.scale.linear()
 	  .style("fill", "#FFF")
 	  .attr("d", arc);
 
+	// Day 1 Countdown text
 	radio.append("svg:text")
 		 .attr("x", 0)
 		 .attr("y", -100)
@@ -157,7 +147,7 @@ var hourScale = d3.scale.linear()
 		 .text("hello");
 
 	radio.append("svg:text")
-		 .attr("x", -98)
+		 .attr("x", -103)
 		 .attr("y", 29)
 		 .style("fill", "#FFF")
 		 .attr("stroke-width", -1)
@@ -180,22 +170,6 @@ var hourScale = d3.scale.linear()
 			.attr('transform',function(d){
 				return 'rotate(' + hourScale(d) + ')';
 			});
-
-
-	function arcTween(transition, newAngle) {
-
-	transition.attrTween("d", function(d) {
-
-	  var interpolate = d3.interpolate(d.endAngle, newAngle);
-
-	  return function(t) {
-
-	    d.endAngle = interpolate(t);
-
-	    return arc(d);
-	  };
-	});
-	}
 
 
 /*************
