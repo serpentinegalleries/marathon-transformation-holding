@@ -74,5 +74,10 @@ jQuery(document).ready(function( $ ) {
 		$('#text-weather').html("");
 	});
 
+	if ($(window).width() < 540) {
+		console.log('hello');
+		$('#supporters').attr('src', "/images/marathon_supporters_mobile.svg");
+	}
+
 });
 
