@@ -40,35 +40,34 @@
 	<%- @getBlock('styles').add(@site.styles).toHTML() %>
 </head>
 <body>
-
-	 <div class="container">
-		<div class="row heading">
-			<!-- Logo -->
-			<div class="col-sm-12 col-md-6 col-lg-6">
-				  <img id="logo" src="/images/logo.png">
-			   </hgroup>
-			</div>
-			<!--- Weather Stream -->
-			<div class="col-sm-12 col-md-2 col-md-offset-4 col-lg-2 col-lg-offset-4 weather-icons">
-			  <div>
-				 <img id="icon-weather">
-			  </div>
-			  <div>
-				 <img id="icon-wind">                                    
-			  </div>
-			  <div class="row" id="text-weather">
-			  </div>
+	<div class="section-landing">
+		 <div class="container section-header">
+			<div class="row-fluid">
+				<!-- Logo -->
+				<div class="col-sm-12 col-md-6 col-lg-6">
+					  <img id="logo" src="/images/logo.png">
+				   </hgroup>
+				</div>
+				<!--- Weather Stream -->
+				<div class="col-sm-12 col-md-2 col-md-offset-4 col-lg-2 col-lg-offset-4 weather-icons">
+				  <div>
+					 <img id="icon-weather">
+				  </div>
+				  <div>
+					 <img id="icon-wind">                                    
+				  </div>
+				  <div class="row" id="text-weather">
+				  </div>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- Content -->
-	<div class="container">
 		<!-- Content -->
-			<%- @content %>
+			<!-- Content -->
+				<%- @content %>
 
-	</div><!-- /container -->
 
+	</div> <!-- /landing -->
     <footer>
         <div class="container">
                 <div class="row">
@@ -78,7 +77,7 @@
                 </div>
             	<div class="row">
             		<div class="col-lg-12">
-            			<img class="pull-right" src="/images/serpentine_marathon.png">
+            			<img id="marathon-logo" class="pull-right" src="/images/serpentine_marathon.svg">
             		</div>
 				</div>  
                 <div class="row">

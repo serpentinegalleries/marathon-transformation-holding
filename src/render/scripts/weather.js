@@ -75,7 +75,6 @@ jQuery(document).ready(function( $ ) {
 	});
 
 	if ($(window).width() < 540) {
-		console.log('hello');
 		$('#supporters').attr('src', "/images/marathon_supporters_mobile.svg");
 	}
 
