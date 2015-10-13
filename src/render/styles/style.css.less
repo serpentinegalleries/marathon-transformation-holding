@@ -83,11 +83,6 @@ a, a:link {
 }
 
 html { 
-  background: url(/images/tm_background.jpg) no-repeat center center; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
 table {
 	tfoot, tbody {
@@ -103,6 +98,11 @@ table {
 .section-landing {
     height: 100%;
     min-height: 100vh;
+  background: url(/images/tm_background.jpg) no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 .section-header {
     padding: 40px 50px 0 50px;
@@ -167,7 +167,7 @@ PLAYER VISUALISAION
     display: block;
     margin: 0 auto;
 }
-#player .col-lg-3 {
+#player .col-lg-4 {
     max-height: 100%;
 }
 #player .col-sm-12 {
@@ -180,7 +180,7 @@ PLAYER VISUALISAION
     width: 100%;
     display: block;
     margin: 0 auto;
-    max-height: 80vh;
+    max-height: 70vh;
 }
 #videoText {
     display: block;
@@ -363,8 +363,8 @@ section {
 #about .container {
     display: block;
     margin: 0 auto;
-    width: 65%;
-    padding: 100px 0;
+    width: 60%;
+    padding: 150px 0;
     text-align: center;
     h1 {
         color: #4696ff;
@@ -372,5 +372,18 @@ section {
     }
     h2 {
         margin-bottom: 100px;
+    }
+}
+
+@media screen and (max-device-width: 500px) {
+    h1 {
+        font-family: 'gt_walsheimbold';
+        font-size: 36px;
+        line-height: 40px;  
+    }
+    h2 {
+        font-family: 'gt_walsheimthin';
+        font-size: 36px;
+        line-height: 40px;  
     }
 }
