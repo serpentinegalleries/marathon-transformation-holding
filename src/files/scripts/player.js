@@ -51,7 +51,6 @@ var hourScale = d3.scale.linear()
 	var width = 500,
 	  height = 600,
 	  τ = 2 * Math.PI;
-	var maxRadius = 200;
 
 	var dateVar = new Date();
 	var minVar = dateVar.getMinutes();
@@ -167,27 +166,21 @@ var hourScale = d3.scale.linear()
 		 .attr("stroke-width", -1)
 		 .attr("text-anchor", "middle")
 		 .attr("class", "status")
-		 .attr("id", "sundayDays")
+		 .attr("id", "sundayDays");
 
 	initializeDaysClock('sundayDays', sunday);
 
 	radio.append("svg:text")
-		 .attr("x", -103)
+		 .attr("x", 0)
 		 .attr("y", 29)
 		 .style("fill", "#FFF")
 		 .attr("stroke-width", -1)
+		 .attr("text-anchor", "middle")
 		 .attr("class", "countdown")
-		 .attr("id", "sundayHours")
+		 .attr("id", "sundayHours");
 
 	initializeHoursClock('sundayHours', sunday);
 
-	radio.append("svg:text")
-		 .attr("x", -103)
-		 .attr("y", 100)
-		 .style("fill", "#FFF")
-		 .attr("stroke-width", -1)
-		 .attr("class", "countdown")
-		 .attr("id", "sundayHours")
 
 //... and hours
 	radio.selectAll('.hour-tick')
