@@ -46,6 +46,34 @@ TYPOGRAPHY
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'surveyor_textlight_italic';
+    src: url('/fonts/surveyortext-lightitalic-webfont.eot');
+    src: url('/fonts/surveyortext-lightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/surveyortext-lightitalic-webfont.woff2') format('woff2'),
+         url('/fonts/surveyortext-lightitalic-webfont.woff') format('woff'),
+         url('/fonts/surveyortext-lightitalic-webfont.ttf') format('truetype'),
+         url('/fonts/surveyortext-lightitalic-webfont.svg#surveyor_textlight_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'surveyor_textlight';
+    src: url('/fonts/surveyortext-light-webfont.eot');
+    src: url('/fonts/surveyortext-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/surveyortext-light-webfont.woff2') format('woff2'),
+         url('/fonts/surveyortext-light-webfont.woff') format('woff'),
+         url('/fonts/surveyortext-light-webfont.ttf') format('truetype'),
+         url('/fonts/surveyortext-light-webfont.svg#surveyor_textlight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+p {
+    font-family: 'surveyor_textlight' !important;
+    font-size: 26px;
+    line-height: 35px;
+    text-align: left !important;
+}
 body {
     font-family: 'gt_walsheimthin';
     background: transparent;
@@ -139,15 +167,20 @@ PLAYER VISUALISAION
     display: block;
     margin: 0 auto;
 }
-#player .col-lg-4 {
-    max-height: 65vh;
+#player .col-lg-3 {
+    max-height: 100%;
+}
+#player .col-sm-12 {
+    min-height: 100%;
 }
 #player .row {
     max-height: 100%;
 }
 #player .container svg {
+    width: 100%;
     display: block;
     margin: 0 auto;
+    max-height: 80vh;
 }
 #videoText {
     display: block;
@@ -320,4 +353,24 @@ footer #supporters {
 i {
     color: #FFF;
     padding-left: 10px;
+}
+
+section {
+    background: #eee;
+
+}
+
+#about .container {
+    display: block;
+    margin: 0 auto;
+    width: 65%;
+    padding: 100px 0;
+    text-align: center;
+    h1 {
+        color: #4696ff;
+        margin-bottom: 50px;
+    }
+    h2 {
+        margin-bottom: 100px;
+    }
 }

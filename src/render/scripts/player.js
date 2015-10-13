@@ -74,7 +74,7 @@ var hourScale = d3.scale.linear()
 
 	var video = d3.select("#video-viz")
 	.append("g")
-	  .attr("transform", "translate(" + width / 2 + "," + 275 / 2 + ")")
+	  .attr("transform", "translate(" + width / 2 + "," + 210 + ")")
 
 	// Add the background arc, from 0 to 100% (τ).
 	var background = video.append("path")
@@ -150,7 +150,7 @@ var hourScale = d3.scale.linear()
 	// Radio Player
 	var radio = d3.select("#radio-viz")
 	.append("g")
-	  .attr("transform", "translate(" + width / 2 + "," + 275 / 2 + ")")
+	  .attr("transform", "translate(" + width / 2 + "," + 210 + ")")
 
 	var radioBackground = radio.append("path")
 	  .datum({endAngle: τ})
