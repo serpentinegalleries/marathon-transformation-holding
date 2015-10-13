@@ -49,7 +49,7 @@ var hourScale = d3.scale.linear()
 	.domain([0,11])
 
 	var width = 500,
-	  height = 800,
+	  height = 600,
 	  τ = 2 * Math.PI;
 
 	var dateVar = new Date();
@@ -74,7 +74,7 @@ var hourScale = d3.scale.linear()
 
 	var video = d3.select("#video-viz")
 	.append("g")
-	  .attr("transform", "translate(" + width / 2 + "," + 50 + ")")
+	  .attr("transform", "translate(" + width / 2 + "," + 275 / 2 + ")")
 
 	// Add the background arc, from 0 to 100% (τ).
 	var background = video.append("path")
@@ -150,7 +150,7 @@ var hourScale = d3.scale.linear()
 	// Radio Player
 	var radio = d3.select("#radio-viz")
 	.append("g")
-	  .attr("transform", "translate(" + width / 2 + "," + 50 + ")")
+	  .attr("transform", "translate(" + width / 2 + "," + 275 / 2 + ")")
 
 	var radioBackground = radio.append("path")
 	  .datum({endAngle: τ})
@@ -234,7 +234,7 @@ var hourScale = d3.scale.linear()
 Resize player
 *************/
 
-	var aspect = 500 / 800,
+	var aspect = width / height,
 	    videoViz = $("#video-viz"),
 	    radioViz = $("#radio-viz");
 	/*$(window).on("load", function() {
@@ -245,14 +245,14 @@ Resize player
 	    radioViz.attr("height", targetWidth * .2);
 	});*/
 	$(window).on("resize", function() {
-	    var targetWidth = videoViz.parent().width();
+	    var targetWidth = videoViz.parent().height();
 	    videoViz.attr("width", targetWidth);
 	    videoViz.attr("height", targetWidth / aspect);
 	    radioViz.attr("width", targetWidth);
 	    radioViz.attr("height", targetWidth / aspect);
 	});
 	$(window).on("load", function() {
-	    var targetWidth = videoViz.parent().width();
+	    var targetWidth = videoViz.parent().height();
 	    videoViz.attr("width", targetWidth);
 	    videoViz.attr("height", targetWidth / aspect);
 	    radioViz.attr("width", targetWidth);
