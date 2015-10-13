@@ -3,7 +3,7 @@ jQuery(document).ready(function( $ ) {
 	/* Countdown */
 
 	var saturday = 'October 17 2015 09:59:59 GMT+01:00';
-	var sunday = 'October 18 2015 11:59:59 GMT+01:00';
+	var sunday = 'October 18 2015 00:00:01 GMT+01:00';
 
 	var timeLeft;
 
@@ -48,7 +48,7 @@ var hourScale = d3.scale.linear()
 	.range([0,330])
 	.domain([0,11])
 
-	var width = 500,
+	var width = 410,
 	  height = 600,
 	  τ = 2 * Math.PI;
 
