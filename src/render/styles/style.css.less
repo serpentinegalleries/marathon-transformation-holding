@@ -48,6 +48,7 @@ TYPOGRAPHY
 }
 body {
     font-family: 'gt_walsheimthin';
+    background: transparent;
 }
 a, a:link {
 	cursor: pointer;
@@ -74,8 +75,6 @@ table {
 .section-landing {
     height: 100%;
     min-height: 100vh;
-    background: #000;
-    opacity: .5;
 }
 .section-header {
     padding: 40px 50px 0 50px;
@@ -135,7 +134,7 @@ PLAYER VISUALISAION
     color: #FFF !important;
 }
 #player .container {
-    width: 75%;
+    width: 100%;
     max-height: 100%;
     display: block;
     margin: 0 auto;
@@ -216,10 +215,13 @@ PLAYER VISUALISAION
 }
 .date-text {
     font-family: 'gt_walsheimbold';
-    font-size: 58px;
-    line-height: 60px;
-    margin-top: 15px;
-    margin-bottom: 40px;
+    font-size: 36px;
+    line-height: 40px;
+}
+.description-text {
+    font-family: 'gt_walsheimthin';
+    font-size: 24px;
+    line-height: 29px;  
 }
 @keyframes fadein {
     from { opacity: 0; }

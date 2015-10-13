@@ -48,7 +48,7 @@ var hourScale = d3.scale.linear()
 	.range([0,330])
 	.domain([0,11])
 
-	var width = 600,
+	var width = 500,
 	  height = 800,
 	  τ = 2 * Math.PI;
 
@@ -58,11 +58,11 @@ var hourScale = d3.scale.linear()
 	var halfdayVar = (((dateVar.getUTCHours() + 1) * 60) + minVar - 720) / 1440;
 
 	var arc = d3.svg.arc()
-	  .innerRadius(225)
-	  .outerRadius(220)
+	  .innerRadius(182)
+	  .outerRadius(177)
 	  .startAngle(0);
 
-    var hourTickStart = 238;
+    var hourTickStart = 195;
     var hourTickLength = -5;
 
 	/* Video player
@@ -74,7 +74,7 @@ var hourScale = d3.scale.linear()
 
 	var video = d3.select("#video-viz")
 	.append("g")
-	  .attr("transform", "translate(" + width / 2 + "," + 500 / 2 + ")")
+	  .attr("transform", "translate(" + width / 2 + "," + 50 + ")")
 
 	// Add the background arc, from 0 to 100% (τ).
 	var background = video.append("path")
@@ -108,12 +108,30 @@ var hourScale = d3.scale.linear()
 
 	video.append("svg:text")
 		 .attr("x", 0)
-		 .attr("y", 300)
+		 .attr("y", 250)
 		 .style("fill", "#FFF")
 		 .attr("stroke-width", -1)
 		 .attr("class", "date-text")
 		 .attr("text-anchor", "middle")
 		 .text("Saturday October 17");
+
+	video.append("svg:text")
+		 .attr("x", 0)
+		 .attr("y", 295)
+		 .style("fill", "#FFF")
+		 .attr("stroke-width", -1)
+		 .attr("class", "description-text")
+		 .attr("text-anchor", "middle")
+		 .text("Live feed from");
+
+	video.append("svg:text")
+		 .attr("x", 0)
+		 .attr("y", 324)
+		 .style("fill", "#FFF")
+		 .attr("stroke-width", -1)
+		 .attr("class", "description-text")
+		 .attr("text-anchor", "middle")
+		 .text("Serpentine Sackler Gallery");
 
 	video.selectAll('.hour-tick')
 		.data(d3.range(0,12)).enter()
@@ -132,7 +150,7 @@ var hourScale = d3.scale.linear()
 	// Radio Player
 	var radio = d3.select("#radio-viz")
 	.append("g")
-	  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+	  .attr("transform", "translate(" + width / 2 + "," + 50 + ")")
 
 	var radioBackground = radio.append("path")
 	  .datum({endAngle: τ})
@@ -185,12 +203,38 @@ var hourScale = d3.scale.linear()
 				return 'rotate(' + hourScale(d) + ')';
 			});
 
+	radio.append("svg:text")
+		 .attr("x", 0)
+		 .attr("y", 250)
+		 .style("fill", "#FFF")
+		 .attr("stroke-width", -1)
+		 .attr("class", "date-text")
+		 .attr("text-anchor", "middle")
+		 .text("Sunday October 18");
+
+	radio.append("svg:text")
+		 .attr("x", 0)
+		 .attr("y", 295)
+		 .style("fill", "#FFF")
+		 .attr("stroke-width", -1)
+		 .attr("class", "description-text")
+		 .attr("text-anchor", "middle")
+		 .text("Live streaming on");
+
+	radio.append("svg:text")
+		 .attr("x", 0)
+		 .attr("y", 324)
+		 .style("fill", "#FFF")
+		 .attr("stroke-width", -1)
+		 .attr("class", "description-text")
+		 .attr("text-anchor", "middle")
+		 .text("Serpentine Radio");
 
 /*************
 Resize player
 *************/
 
-	var aspect = 600 / 800,
+	var aspect = 500 / 800,
 	    videoViz = $("#video-viz"),
 	    radioViz = $("#radio-viz");
 	/*$(window).on("load", function() {
