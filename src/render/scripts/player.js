@@ -48,8 +48,8 @@ var hourScale = d3.scale.linear()
 	.range([0,330])
 	.domain([0,11])
 
-	var width = 500,
-	  height = 500,
+	var width = 600,
+	  height = 800,
 	  τ = 2 * Math.PI;
 
 	var dateVar = new Date();
@@ -74,7 +74,7 @@ var hourScale = d3.scale.linear()
 
 	var video = d3.select("#video-viz")
 	.append("g")
-	  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+	  .attr("transform", "translate(" + width / 2 + "," + 500 / 2 + ")")
 
 	// Add the background arc, from 0 to 100% (τ).
 	var background = video.append("path")
@@ -105,6 +105,15 @@ var hourScale = d3.scale.linear()
 		 .attr("id", "saturdayHours")
 
 	initializeHoursClock('saturdayHours', saturday);
+
+	video.append("svg:text")
+		 .attr("x", 0)
+		 .attr("y", 300)
+		 .style("fill", "#FFF")
+		 .attr("stroke-width", -1)
+		 .attr("class", "date-text")
+		 .attr("text-anchor", "middle")
+		 .text("Saturday October 17");
 
 	video.selectAll('.hour-tick')
 		.data(d3.range(0,12)).enter()
@@ -143,12 +152,6 @@ var hourScale = d3.scale.linear()
 
 	initializeDaysClock('sundayDays', sunday);
 
-	var textBox = radio.append("div")
-		.attr("class", "hello")
-		 .attr("x", 0)
-		 .attr("y", 0)
-		 .text("hello");
-
 	radio.append("svg:text")
 		 .attr("x", -103)
 		 .attr("y", 29)
@@ -158,6 +161,14 @@ var hourScale = d3.scale.linear()
 		 .attr("id", "sundayHours")
 
 	initializeHoursClock('sundayHours', sunday);
+
+	radio.append("svg:text")
+		 .attr("x", -103)
+		 .attr("y", 100)
+		 .style("fill", "#FFF")
+		 .attr("stroke-width", -1)
+		 .attr("class", "countdown")
+		 .attr("id", "sundayHours")
 
 //... and hours
 	radio.selectAll('.hour-tick')
@@ -179,29 +190,37 @@ var hourScale = d3.scale.linear()
 Resize player
 *************/
 
-	var aspect = 500 / 500,
+	var aspect = 600 / 800,
 	    videoViz = $("#video-viz"),
 	    radioViz = $("#radio-viz");
-	$(window).on("load", function() {
+	/*$(window).on("load", function() {
 	    var targetWidth = $( document ).height();
 	    videoViz.attr("width", targetWidth * .2);
 	    videoViz.attr("height", targetWidth * .2);
 	    radioViz.attr("width", targetWidth * .2);
 	    radioViz.attr("height", targetWidth * .2);
-	});
-	/*$(window).on("resize", function() {
+	});*/
+	$(window).on("resize", function() {
 	    var targetWidth = videoViz.parent().width();
 	    videoViz.attr("width", targetWidth);
 	    videoViz.attr("height", targetWidth / aspect);
 	    radioViz.attr("width", targetWidth);
 	    radioViz.attr("height", targetWidth / aspect);
-	});*/
+	});
+	$(window).on("load", function() {
+	    var targetWidth = videoViz.parent().width();
+	    videoViz.attr("width", targetWidth);
+	    videoViz.attr("height", targetWidth / aspect);
+	    radioViz.attr("width", targetWidth);
+	    radioViz.attr("height", targetWidth / aspect);
+	});
+	/*
 	$(window).on("resize", function() {
 	    var targetWidth = $( document ).height();
 	    videoViz.attr("width", targetWidth * .2);
 	    videoViz.attr("height", targetWidth * .2);
 	    radioViz.attr("width", targetWidth * .2);
 	    radioViz.attr("height", targetWidth * .2);
-	});	
+	});	*/
 });
 

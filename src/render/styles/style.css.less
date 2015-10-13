@@ -48,20 +48,7 @@ TYPOGRAPHY
 }
 body {
     font-family: 'gt_walsheimthin';
-    background: transparent;
 }
-h1 {
-    font-family: 'gt_walsheimbold';
-    font-size: 24px;
-    line-height: 29px;  
-    color: #FFF;
-}
-/* Main header thin */
-h2 {
-    font-family: 'gt_walsheimbold';
-    font-size: 24px;
-    line-height: 29px;  
-} 
 a, a:link {
 	cursor: pointer;
 }
@@ -87,6 +74,8 @@ table {
 .section-landing {
     height: 100%;
     min-height: 100vh;
+    background: #000;
+    opacity: .5;
 }
 .section-header {
     padding: 40px 50px 0 50px;
@@ -225,6 +214,13 @@ PLAYER VISUALISAION
          -o-animation: fadein 5s; /* Opera < 12.1 */
             animation: fadein 5s;    
 }
+.date-text {
+    font-family: 'gt_walsheimbold';
+    font-size: 58px;
+    line-height: 60px;
+    margin-top: 15px;
+    margin-bottom: 40px;
+}
 @keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
@@ -298,18 +294,17 @@ footer div.mythemes-social a:hover:before, footer div.mythemes-social a:before {
 }
 .footer-logo {
     max-width: 100%;
-    margin-bottom: 50px;
-    display: block;
 }
 footer {
     background: #000;
-    padding: 40px 50px !important;
+    padding: 40px 50px 200px 40px !important;
     color: #FFF;
     max-width: 100%;
 }
 
 footer img {
     max-width: 100%;
+    display: inline;
 }
 
 footer #supporters {
@@ -317,7 +312,8 @@ footer #supporters {
 }
 .social-icons {
     padding-left: 10px;
-    margin-top: 25px;
+    margin-top: 15px;
+    display: block;
 }
 #marathon-logo {
     max-width: 200px;
