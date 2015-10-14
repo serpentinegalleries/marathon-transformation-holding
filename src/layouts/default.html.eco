@@ -46,7 +46,7 @@
 				<div class="row">
 					<!-- Logo -->
 					<div class="col-sm-12 col-md-6 col-lg-6">
-						  <img id="logo" src="/images/logo.png">
+						  <img id="logo" src="/images/logo.svg">
 					   </hgroup>
 					</div>
 					<!--- Weather Stream -->
@@ -88,8 +88,7 @@
 		Returning to the 24-hour format of the inaugural Interview Marathon in 2006,
 		the <em>Transformation Marathon</em> takes place at the Serpentine Sackler Gallery on
 		Saturday 17 October from 10am to 10pm and continues from midnight until noon
-		on Sunday 18 October on the first Serpentine Radio broadcast, accessible at
-		radio.serpentinegalleries.org.
+		on Sunday 18 October on the first Serpentine Radio broadcast.
 		</p>
 	</div>
 	</section>
@@ -97,11 +96,11 @@
     <footer>
         <div class="container">
                 <div class="row">
-                	<div class="col-lg-10">
-	                    <img class="footer-logo" src="/images/logo.png">
+                	<div class="col-lg-10 col-md-12">
+	                    <img class="footer-logo" src="/images/logo.svg">
 					</div>  
-                    <div class="col-lg-2">
-            			<img id="marathon-logo" class="pull-right" src="/images/serpentine_marathon.svg">
+                    <div class="col-lg-2 col-md-12">
+            			<a href="//serpentinegalleries.org" target="_blank"><img id="marathon-logo" class="pull-right" src="/images/serpentine_marathon.svg"></a>
                     	<div class="social-icons pull-right">
                     		<h6><a href="//twitter.com/SerpentineUK"><i class="fa fa-twitter"></i></a>
                     		<a href="//instagram.com/serpentineuk"><i class="fa fa-instagram"></i></a>
