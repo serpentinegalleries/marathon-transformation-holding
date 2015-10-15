@@ -58,7 +58,6 @@
 					<!-- Logo -->
 					<div class="col-sm-12 col-md-6 col-lg-6">
 						  <img id="logo" src="/images/logo.svg">
-					   </hgroup>
 					</div>
 					<!--- Weather Stream -->
 					<div class="col-sm-12 col-md-2 col-md-offset-4 col-lg-2 col-lg-offset-4 weather-icons">
@@ -112,6 +111,10 @@
 					</div>  
                     <div class="col-lg-2 col-md-12">
             			<a href="//serpentinegalleries.org" target="_blank"><img id="marathon-logo" class="pull-right" src="/images/serpentine_marathon.svg"></a>
+            		</div>
+            	</div>
+            	<div class="row">
+            		<div class="col-lg-2 col-lg-offset-10 col-md-12">
                     	<div class="social-icons pull-right">
                     		<h6><a href="//twitter.com/SerpentineUK"><i class="fa fa-twitter"></i></a>
                     		<a href="//instagram.com/serpentineuk"><i class="fa fa-instagram"></i></a>
@@ -119,6 +122,8 @@
                     		<a href="//facebook.com/SerpentineGalleries"><i class="fa fa-facebook"></i></a></h6>          
                     	</div>
                 	</div>
+                </div>
+                <div class="row">
             		<div class="col-lg-9 col-md-10 col-sm-12">
             			<img id="supporters" src="/images/marathon_supporters.svg">
             		</div>
