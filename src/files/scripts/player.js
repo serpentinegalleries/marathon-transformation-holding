@@ -50,13 +50,32 @@ jQuery(document).ready(function( $ ) {
 	var sundayArc = (timeLeftSun.hours)*60 + timeLeftSun.minutes;
 	sundayArc = (840 - sundayArc) / 840;
 
-/**********
-PLAYER
-**********/
+	/**********
+	PLAYER
+	**********/
 
-var hourScale = d3.scale.linear()
-	.range([0,330])
-	.domain([0,11])
+	var archiveTimes = ["4pm&#8212;5pm", "5pm&#8212;6pm", "6pm&#8212;7pm", "7pm&#8212;8pm", "8pm&#8212;9pm", "9pm&#8212;10pm", "10am&#8212;11am", "11am&#8212;12pm", "12pm&#8212;1pm", "1pm&#8212;2pm", "2pm&#8212;3pm", "3pm&#8212;4pm"]
+	var videoLinks = ["_g7t7_NwX8Q", "SsgW30wjcLk","BB1H-MZTpKA", "0sEpt-Rlkfk","0sEpt-Rlkfk","2RCLTxUaWVo", "VatiJ4G11n8","yCanVrhb65k","VkQCB6xhtho","PLFh8rLhxZ8","VfDOS10SLhg","8Ra0yePItPc"];
+
+	var videoObjs = [
+	    {"id":"VatiJ4G11n8", "index":"1"},
+	    {"id":"yCanVrhb65k", "index":"4"},
+	    {"id":"VkQCB6xhtho", "index":"7"},
+	    {"id":"PLFh8rLhxZ8", "index":"8"},
+	    {"id":"VfDOS10SLhg", "index":"11"},
+	    {"id":"8Ra0yePItPc", "index":"14"},
+	    {"id":"_g7t7_NwX8Q", "index":"17"},
+	    {"id":"SsgW30wjcLk", "index":"20"},
+	    {"id":"BB1H-MZTpKA", "index":"22"},
+	    {"id":"0sEpt-Rlkfk", "index":"26"},
+	    {"id":"2RCLTxUaWVo", "index":"28"}
+	];
+
+	var videoListen;
+
+	var hourScale = d3.scale.linear()
+		.range([0,330])
+		.domain([0,11])
 
 	var width = 410,
 	  height = 600,
@@ -76,17 +95,17 @@ var hourScale = d3.scale.linear()
     var hourTickLength = -5;
 
 	var video = d3.select("#video-viz")
-	.append("g")
-	  .attr("transform", "translate(" + width / 2 + "," + 200 + ")")
+		.append("g")
+		.attr("transform", "translate(" + width / 2 + "," + 200 + ")")
 
 	// Add the background arc, from 0 to 100% (τ).
 	var videoBackground = video.append("path")
-	  .datum({endAngle: τ})
-	  .style("fill", "#FFF")
-	  .attr("opacity",".5")
-	  .attr("d", arc);
+		.datum({endAngle: τ})
+		.style("fill", "#FFF")
+		.attr("opacity","1")
+		.attr("d", arc);
 
-	if (getTimeRemaining(saturday_end).total > 0 ) {
+	/*if (getTimeRemaining(saturday_end).total > 0 ) {
 		var videoForeground = video.append("path")
 		  .datum({endAngle: τ * saturdayArc})
 		  .style("fill", "#FFF")
@@ -122,46 +141,125 @@ var hourScale = d3.scale.linear()
 		 .attr("text-anchor", "middle")
 		 .attr("class", "status")
 		 .text("ON AIR");
-	}
+	}*/
 
-	if(getTimeRemaining(saturday_end).total < 0) {
-		video.append("svg:text")
-			 .attr("x", 0)
-			 .attr("y", 20)
-			 .style("fill", "#FFF")
-			 .attr("stroke-width", -1)
-			 .attr("class", "description-text")
-			 .attr("text-anchor", "middle")
-			 .text("Archive Coming Soon");
+	/* Video archive */
 
-		video.append("svg:text")
-			 .attr("x", 0)
-			 .attr("y", -110)
-			 .style("fill", "#FFF")
-			 .attr("stroke-width", -1)
-			 .attr("text-anchor", "middle")
-			 .attr("class", "status")
-			 .text("OVER");
+	var videoViewProgramme;
+	var videoTime;
+	var videoWatch;
 
-		videoBackground.attr("opacity", "1");
-	}
-	/* Day 1 Countdown text */
-	else if (saturdayArc < 0) {
-		var saturdayCountdown = video.append("svg:text")
-			 .attr("x", 0)
-			 .attr("y", 29)
-			 .style("fill", "#FFF")
-			 .attr("text-anchor", "middle")
-			 .attr("stroke-width", -1)
-			 .attr("class", "countdown")
-			 .attr("id", "saturdayHours");
+	var videoArchive1 = video.append("svg:text")
+		.attr("x", 0)
+		.attr("y", -30)
+		.style("fill", "#FFF")
+		.attr("stroke-width", -1)
+		.attr("class", "archive-text")
+		.attr("text-anchor", "middle")
+		.text("Browse the");
 
-		var tH = getTimeRemaining(saturday);
-		var clockElem0 = document.getElementById('saturdayHours');
-		clockElem0.innerHTML = (tH.hours<10?'0':'') + tH.hours + ":" + (tH.minutes<10?'0':'') + tH.minutes + ":" + (tH.seconds<10?'0':'') + tH.seconds;
-		clockElem0.textContent = (tH.hours<10?'0':'') + tH.hours + ":" + (tH.minutes<10?'0':'') + tH.minutes + ":" + (tH.seconds<10?'0':'') + tH.seconds;
-		initializeHoursClock(saturdayCountdown, saturday);
-	}
+	var videoArchive2 = video.append("svg:text")
+		.attr("x", 0)
+		.attr("y", 10)
+		.style("fill", "#FFF")
+		.attr("stroke-width", -1)
+		.attr("class", "archive-text")
+		.attr("text-anchor", "middle")
+		.text("dial to access the");
+
+	var videoArchive3 = video.append("svg:text")
+		.attr("x", 0)
+		.attr("y", 50)
+		.style("fill", "#FFF")
+		.attr("stroke-width", -1)
+		.attr("class", "archive-text")
+		.attr("text-anchor", "middle")
+		.text("video archive");
+
+	video.append("svg:text")
+		 .attr("x", 0)
+		 .attr("y", -110)
+		 .style("fill", "#FFF")
+		 .attr("stroke-width", -1)
+		 .attr("text-anchor", "middle")
+		 .attr("class", "status")
+		 .text("OVER");
+
+	video.selectAll('.hour-box')
+		.data(d3.range(0,12)).enter()
+			.append('rect')
+			.attr('class', 'hour-box')
+			.attr('x',0)
+			.attr('y', hourTickStart - 30)
+			.attr('width',30)
+			.attr('height',50)
+			.style("stroke-width", "2px")
+			.style("opacity", "0")
+			.attr('transform',function(d){
+				return 'rotate(' + hourScale(d) + ')';
+			})
+			/* For archive */
+			.on("mouseover", function(d, i) {
+				videoArchive1.text("");
+				videoArchive2.text("");
+				videoArchive3.text("");
+				if(videoTime != null) {
+					videoTime.text("");
+				};
+				/* Time of video */
+				videoTime = video.append("svg:text")
+				 .attr("x", 0)
+				 .attr("y", -7)
+				 .style("fill", "#FFF")
+				 .attr("stroke-width", -1)
+				 .attr("text-anchor", "middle")
+				 .attr("class", "name")
+				 .html(archiveTimes[i]);
+				/* View programme */
+				if(videoViewProgramme != null) {
+					videoViewProgramme.html("");
+				};
+				videoViewProgramme = video.append("svg:text")
+				 .attr("x", 0)
+				 .attr("y", 22)
+				 .style("fill", "#FFF")
+				 .attr("stroke-width", -1)
+				 .attr("text-anchor", "middle")
+				 .attr("class", "title")
+				 .text("View Programme");
+				if(videoWatch != null) {
+					videoWatch.text("");
+				}
+				videoWatch = video.append("svg:text")
+					.attr("x", 6)
+					.attr("y", 100)
+					.style("fill", "#FFF")
+					.attr("stroke-width", -1)
+					.attr("class", "name")
+					.attr("text-anchor", "middle")
+					.text("watch")
+					.attr("pointer-events", "all")
+					.on("click", function() {
+						
+						document.getElementById('youtube').src = "https://www.youtube.com/embed?v=" + videoObjs[i].id + "&list=PLLrFzV6gBibcE1cH1rBq7LtiKyoBi5HXz&index=" + videoObjs[i].index + "&hd=1&rel=0&autohide=1&showinfo=0";
+
+						showModal(); 
+					}); // playVideoArchive(videoLinks[i])); //d3.select(this).attr("id")));
+				if(playButton != null) {
+					playButton.text("");
+				}
+				playButton = video.append('svg:text')
+					 .attr("x", -55)
+					 .attr("y", 100)
+				     .attr('font-family', 'FontAwesome')
+				     .style("fill", "#FFF")
+				     .attr("font-size", "20px")
+					 .attr("id", videoLinks[i])
+				     .text(function(d) { return '\uf04b' });
+			 });
+
+
+	/* Video links */
 
 	video.append("svg:text")
 		 .attr("x", 0)
@@ -533,4 +631,56 @@ ALTERNATE TEXT
 	    $("#livestream").modal("show");
 	});
 
+	$('svg.name').on('click', function () {
+		var $videoID = $(this).attr("id");
+		console.log($videoID);
+        $('#livestream iframe').attr("src", "https://www.youtube.com/embed/" + $videoID + "?hd=1&rel=0&autohide=1&showinfo=0");
+	    $("#livestream").modal("show");
+	});
+
+	function showModal() {
+        //$('#livestream iframe').attr("src", "https://www.youtube.com/embed/" + videoLink + "?hd=1&rel=0&autohide=1&showinfo=0");
+	    $("#livestream").modal("show");
+	}
+
 });
+
+
+	/*if(getTimeRemaining(saturday_end).total < 0) {
+		video.append("svg:text")
+			 .attr("x", 0)
+			 .attr("y", 20)
+			 .style("fill", "#FFF")
+			 .attr("stroke-width", -1)
+			 .attr("class", "description-text")
+			 .attr("text-anchor", "middle")
+			 .text("Archive Coming Soon");
+
+		video.append("svg:text")
+			 .attr("x", 0)
+			 .attr("y", -110)
+			 .style("fill", "#FFF")
+			 .attr("stroke-width", -1)
+			 .attr("text-anchor", "middle")
+			 .attr("class", "status")
+			 .text("OVER");
+
+		videoBackground.attr("opacity", "1");
+	}
+	/* Day 1 Countdown text 
+	else if (saturdayArc < 0) {
+		var saturdayCountdown = video.append("svg:text")
+			 .attr("x", 0)
+			 .attr("y", 29)
+			 .style("fill", "#FFF")
+			 .attr("text-anchor", "middle")
+			 .attr("stroke-width", -1)
+			 .attr("class", "countdown")
+			 .attr("id", "saturdayHours");
+
+		var tH = getTimeRemaining(saturday);
+		var clockElem0 = document.getElementById('saturdayHours');
+		clockElem0.innerHTML = (tH.hours<10?'0':'') + tH.hours + ":" + (tH.minutes<10?'0':'') + tH.minutes + ":" + (tH.seconds<10?'0':'') + tH.seconds;
+		clockElem0.textContent = (tH.hours<10?'0':'') + tH.hours + ":" + (tH.minutes<10?'0':'') + tH.minutes + ":" + (tH.seconds<10?'0':'') + tH.seconds;
+		initializeHoursClock(saturdayCountdown, saturday);
+	}*/
